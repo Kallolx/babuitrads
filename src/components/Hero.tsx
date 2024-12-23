@@ -5,7 +5,6 @@ import { IoArrowBack, IoArrowForward } from 'react-icons/io5'
 import AnimatedBackground from './AnimatedBackground'
 
 const Hero = () => {
-  const [activeCard, setActiveCard] = useState(0)
   const [activeTestimonial, setActiveTestimonial] = useState(0)
 
   // Testimonials
@@ -51,20 +50,12 @@ const Hero = () => {
   ]
 
   useEffect(() => {
-    // Card rotation
-    const cardInterval = setInterval(() => {
-      setActiveCard((prev) => (prev === 0 ? 1 : 0))
-    }, 4000)
-
     // Testimonial rotation
     const testimonialInterval = setInterval(() => {
       setActiveTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))
     }, 5000)
 
-    return () => {
-      clearInterval(cardInterval)
-      clearInterval(testimonialInterval)
-    }
+    return () => clearInterval(testimonialInterval)
   }, [testimonials.length])
 
   return (
@@ -73,67 +64,331 @@ const Hero = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex flex-col items-center">
-          {/* Business Card Showcase */}
-          <motion.div 
-            className="relative w-full max-w-[600px] aspect-[600/350]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Cards Container */}
-            <div className="relative w-full h-full">
-              {/* Front Card */}
-              <div 
-                className={`absolute w-full h-full transition-all duration-1000 ease-in-out
-                  ${activeCard === 0 
-                    ? 'opacity-100 translate-y-0 scale-100' 
-                    : 'opacity-0 -translate-y-8 scale-95'}`}
+          {/* Logo Section with Side Badges */}
+          <div className="relative w-full max-w-[800px] mx-auto">
+            {/* Mobile Badges - Top */}
+            <div className="grid grid-cols-2 gap-3 mb-6 md:hidden">
+              <motion.div
+                className="bg-nav-dark/50 backdrop-blur-sm border border-nav-gold/20 rounded-lg p-2.5 w-full"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0
+                }}
+                transition={{ duration: 0.5 }}
               >
-                <img 
-                  src="/images/card-front.png" 
-                  alt="Business Card Front" 
-                  className="w-full h-full object-contain rounded-xl shadow-2xl"
-                />
-              </div>
-              
-              {/* Back Card */}
-              <div 
-                className={`absolute w-full h-full transition-all duration-1000 ease-in-out
-                  ${activeCard === 1 
-                    ? 'opacity-100 translate-y-0 scale-100' 
-                    : 'opacity-0 translate-y-8 scale-95'}`}
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-nav-gold/10 flex items-center justify-center">
+                    <HiOutlineGlobeAlt className="w-4 h-4 text-nav-gold" />
+                  </div>
+                  <div>
+                    <div className="text-white font-dm-sans text-xs font-medium">Global Reach</div>
+                    <div className="text-nav-gold/70 text-[10px]">10+ Countries</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="bg-nav-dark/50 backdrop-blur-sm border border-nav-gold/20 rounded-lg p-2.5 w-full"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <img 
-                  src="/images/card-back.png" 
-                  alt="Business Card Back" 
-                  className="w-full h-full object-contain rounded-xl shadow-2xl"
-                />
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-nav-gold/10 flex items-center justify-center">
+                    <HiOutlineShieldCheck className="w-4 h-4 text-nav-gold" />
+                  </div>
+                  <div>
+                    <div className="text-white font-dm-sans text-xs font-medium">Quality Assured</div>
+                    <div className="text-nav-gold/70 text-[10px]">ISO Certified</div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="flex items-center justify-center">
+              {/* Left Side Badges - Desktop */}
+              <div className="hidden md:flex flex-col gap-4 -mr-6">
+                <motion.div
+                  className="bg-nav-dark/50 backdrop-blur-sm border border-nav-gold/20 rounded-lg p-3 w-[180px]"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ 
+                    opacity: 1, 
+                    x: 0,
+                    y: [0, -10, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-nav-gold/10 flex items-center justify-center">
+                      <HiOutlineGlobeAlt className="w-5 h-5 text-nav-gold" />
+                    </div>
+                    <div>
+                      <div className="text-white font-dm-sans text-sm font-medium">Global Reach</div>
+                      <div className="text-nav-gold/70 text-xs">10+ Countries</div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="bg-nav-dark/50 backdrop-blur-sm border border-nav-gold/20 rounded-lg p-3 w-[180px]"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ 
+                    opacity: 1, 
+                    x: 0,
+                    y: [0, 10, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.2,
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-nav-gold/10 flex items-center justify-center">
+                      <HiOutlineShieldCheck className="w-5 h-5 text-nav-gold" />
+                    </div>
+                    <div>
+                      <div className="text-white font-dm-sans text-sm font-medium">Quality Assured</div>
+                      <div className="text-nav-gold/70 text-xs">ISO Certified</div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
 
-              {/* Card Indicators */}
-              <div className="absolute -bottom-8 lg:-bottom-12 left-1/2 -translate-x-1/2 flex gap-3">
-                {[0, 1].map((index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-500
-                      ${activeCard === index 
-                        ? 'bg-nav-gold w-6' 
-                        : 'bg-nav-gold/30'}`}
+              {/* Main Logo */}
+              <motion.div 
+                className="relative w-full max-w-[400px] aspect-square"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                {/* Main Logo Container */}
+                <div className="relative w-full h-full">
+                  {/* Logo with Floating Animation */}
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    animate={{ 
+                      y: [-5, 5, -5],
+                      rotate: [-2, 2, -2],
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <img 
+                      src="/images/main.png" 
+                      alt="MS BABUI TRADERS Logo" 
+                      className="w-full h-full object-contain drop-shadow-2xl"
+                    />
+                  </motion.div>
+
+                  {/* Inner Glowing Ring */}
+                  <motion.div
+                    className="absolute inset-[10%] rounded-full border-2 border-nav-gold/20 backdrop-blur-sm"
+                    animate={{
+                      scale: [1, 1.05, 1],
+                      opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
                   />
-                ))}
+
+                  {/* Outer Glowing Ring */}
+                  <motion.div
+                    className="absolute inset-[-5%] rounded-full border border-nav-gold/10"
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.1, 0.3, 0.1],
+                      rotate: [0, 180, 360],
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  />
+
+                  {/* Animated Particles */}
+                  <div className="absolute inset-0">
+                    {[...Array(8)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-1.5 h-1.5 rounded-full bg-nav-gold/40"
+                        style={{
+                          top: '50%',
+                          left: '50%',
+                        }}
+                        animate={{
+                          x: [0, Math.cos(i * 45 * Math.PI / 180) * 180],
+                          y: [0, Math.sin(i * 45 * Math.PI / 180) * 180],
+                          scale: [0, 1, 0],
+                          opacity: [0, 1, 0],
+                        }}
+                        transition={{
+                          duration: 3,
+                          delay: i * 0.2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Glowing Accent Lines */}
+                  <div className="absolute inset-0">
+                    {[...Array(4)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute top-1/2 left-1/2 w-[200px] h-[1px] bg-gradient-to-r from-transparent via-nav-gold/30 to-transparent origin-left"
+                        style={{
+                          transform: `rotate(${i * 90}deg)`,
+                        }}
+                        animate={{
+                          scaleX: [0, 1, 0],
+                          opacity: [0, 0.5, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          delay: i * 0.5,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Radial Gradient Background */}
+                  <div className="absolute inset-0 bg-gradient-radial from-nav-gold/5 via-transparent to-transparent opacity-50" />
+                </div>
+              </motion.div>
+
+              {/* Right Side Badges - Desktop */}
+              <div className="hidden md:flex flex-col gap-4 -ml-6">
+                <motion.div
+                  className="bg-nav-dark/50 backdrop-blur-sm border border-nav-gold/20 rounded-lg p-3 w-[180px]"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ 
+                    opacity: 1, 
+                    x: 0,
+                    y: [0, 10, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-nav-gold/10 flex items-center justify-center">
+                      <HiOutlineChartBar className="w-5 h-5 text-nav-gold" />
+                    </div>
+                    <div>
+                      <div className="text-white font-dm-sans text-sm font-medium">Growth Rate</div>
+                      <div className="text-nav-gold/70 text-xs">25% YoY</div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="bg-nav-dark/50 backdrop-blur-sm border border-nav-gold/20 rounded-lg p-3 w-[180px]"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ 
+                    opacity: 1, 
+                    x: 0,
+                    y: [0, -10, 0]
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.2,
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-nav-gold/10 flex items-center justify-center">
+                      <HiOutlineBriefcase className="w-5 h-5 text-nav-gold" />
+                    </div>
+                    <div>
+                      <div className="text-white font-dm-sans text-sm font-medium">Active Projects</div>
+                      <div className="text-nav-gold/70 text-xs">50+ Running</div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
-          </motion.div>
+
+            {/* Mobile Badges - Bottom */}
+            <div className="grid grid-cols-2 gap-3 mt-6 md:hidden">
+              <motion.div
+                className="bg-nav-dark/50 backdrop-blur-sm border border-nav-gold/20 rounded-lg p-2.5 w-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-nav-gold/10 flex items-center justify-center">
+                    <HiOutlineChartBar className="w-4 h-4 text-nav-gold" />
+                  </div>
+                  <div>
+                    <div className="text-white font-dm-sans text-xs font-medium">Growth Rate</div>
+                    <div className="text-nav-gold/70 text-[10px]">25% YoY</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="bg-nav-dark/50 backdrop-blur-sm border border-nav-gold/20 rounded-lg p-2.5 w-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-nav-gold/10 flex items-center justify-center">
+                    <HiOutlineBriefcase className="w-4 h-4 text-nav-gold" />
+                  </div>
+                  <div>
+                    <div className="text-white font-dm-sans text-xs font-medium">Active Projects</div>
+                    <div className="text-nav-gold/70 text-[10px]">50+ Running</div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
 
           {/* Hero Title & Description */}
-          <div className="mt-20 text-center max-w-4xl mx-auto">
+          <div className="mt-12 text-center max-w-4xl mx-auto">
             <motion.h1 
-              className="text-4xl md:text-5xl lg:text-7xl font-cinzel text-white font-bold tracking-tight"
+              className="text-4xl md:text-5xl lg:text-7xl font-dm-sans text-white font-bold tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              MS BABUI TRADERS
+              <span className="bg-gradient-to-r from-nav-gold via-white to-nav-gold bg-clip-text text-transparent">
+                MS BABUI TRADERS
+              </span>
             </motion.h1>
 
             <motion.p 
