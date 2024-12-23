@@ -105,7 +105,7 @@ const Navbar = () => {
             </span>
 
             {/* Mobile Logo Text */}
-            <div className="lg:hidden flex flex-col text-white font-cinzel text-sm leading-tight font-medium">
+            <div className="lg:hidden flex flex-col text-white font-cinzel text-md leading-tight font-medium">
               <span>MS BABUI</span>
               <span>TRADERS</span>
             </div>
