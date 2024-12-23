@@ -94,7 +94,7 @@ const Navbar = () => {
             
             <Link to="/">
               <img 
-                src="/images/3.png" 
+                src="/images/2.png" 
                 alt="Logo" 
                 className="h-12 w-auto lg:h-16"
               />
