@@ -268,10 +268,10 @@ const Hero = () => {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeTestimonial}
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -100 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
                     className="text-center"
                   >
                     <p className="text-white/90 font-dm-sans text-xl md:text-2xl font-light leading-relaxed">

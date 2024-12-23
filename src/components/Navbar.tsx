@@ -141,30 +141,31 @@ const Navbar = () => {
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Mobile Menu Slide-out */}
+      {/* Mobile Menu Slide-out - Optimized animation */}
       <div 
-        className={`fixed top-0 right-0 h-full w-[50%] bg-nav-dark z-40 transform 
-          transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] lg:hidden
-          ${isOpen ? 'translate-x-0 shadow-2xl' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 h-full w-[80%] sm:w-[50%] bg-nav-dark z-40 transform 
+          transition-transform duration-300 ease-out lg:hidden
+          ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex flex-col pt-24 px-8">
           {/* Close button at top */}
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-8 right-8 text-nav-gold hover:text-white transition-colors duration-300"
+            className="absolute top-8 right-8 text-nav-gold hover:text-white 
+                     transition-colors duration-200"
             aria-label="Close Menu"
           >
             <IoCloseOutline size={28} />
           </button>
 
-          {/* Mobile Links */}
+          {/* Mobile Links - Simplified animation */}
           <div className="space-y-6">
             {allLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 className="block text-nav-gold hover:text-white font-cinzel text-base 
-                         transition-colors duration-300"
+                         transition-colors duration-200"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

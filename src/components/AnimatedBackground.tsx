@@ -1,56 +1,38 @@
 import { motion } from 'framer-motion'
 
 const AnimatedBackground = () => {
-  // Predefined positions for smoother animations
+  // Reduced number of floating circles and simplified animations
   const floatingCircles = [
     {
-      initialX: "0%",
+      initialX: "10%",
       initialY: "20%",
       animate: {
-        x: ["0%", "10%", "-5%", "0%"],
-        y: ["0%", "-15%", "10%", "0%"],
-      }
-    },
-    {
-      initialX: "70%",
-      initialY: "40%",
-      animate: {
-        x: ["0%", "-10%", "15%", "0%"],
-        y: ["0%", "10%", "-10%", "0%"],
-      }
-    },
-    {
-      initialX: "30%",
-      initialY: "60%",
-      animate: {
-        x: ["0%", "15%", "-15%", "0%"],
-        y: ["0%", "-10%", "5%", "0%"],
+        y: ["0%", "10%", "0%"],
       }
     },
     {
       initialX: "80%",
-      initialY: "10%",
+      initialY: "50%",
       animate: {
-        x: ["0%", "-15%", "10%", "0%"],
-        y: ["0%", "15%", "-15%", "0%"],
+        y: ["0%", "-10%", "0%"],
       }
     },
     {
-      initialX: "20%",
+      initialX: "50%",
       initialY: "80%",
       animate: {
-        x: ["0%", "10%", "-10%", "0%"],
-        y: ["0%", "-5%", "15%", "0%"],
+        y: ["0%", "10%", "0%"],
       }
     }
   ]
 
   return (
     <div className="fixed inset-0 z-0">
-      {/* Grid Lines */}
+      {/* Simplified Grid Lines - reduced count */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 grid grid-cols-[repeat(auto-fit,minmax(50px,1fr))] grid-rows-[repeat(auto-fit,minmax(50px,1fr))] opacity-20">
-          {[...Array(100)].map((_, i) => (
+        <div className="absolute inset-0 grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] 
+                      grid-rows-[repeat(auto-fit,minmax(100px,1fr))] opacity-20">
+          {[...Array(50)].map((_, i) => (
             <div
               key={i}
               className="border-[0.5px] border-nav-gold/20"
@@ -59,49 +41,24 @@ const AnimatedBackground = () => {
         </div>
       </div>
 
-      {/* Animated Circles */}
+      {/* Simplified Animated Circles */}
       <div className="absolute inset-0">
         {floatingCircles.map((circle, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-gradient-to-br from-nav-gold/20 to-transparent blur-xl"
+            className="absolute rounded-full bg-gradient-to-br from-nav-gold/20 to-transparent blur-lg"
             style={{
-              width: `${Math.random() * 300 + 200}px`,
-              height: `${Math.random() * 300 + 200}px`,
+              width: "200px",
+              height: "200px",
               left: circle.initialX,
               top: circle.initialY,
             }}
             animate={circle.animate}
             transition={{
-              duration: 20,
+              duration: 4,
               repeat: Infinity,
               repeatType: "reverse",
               ease: "easeInOut",
-              times: [0, 0.33, 0.66, 1]
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Diagonal Lines */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute h-[1px] w-[200%] bg-gradient-to-r from-transparent via-nav-gold/30 to-transparent"
-            style={{
-              top: `${i * 25}%`,
-              left: '-50%',
-              transform: 'rotate(-35deg)',
-            }}
-            animate={{
-              translateX: ['0%', '100%'],
-            }}
-            transition={{
-              duration: 15,
-              delay: i * 0.5,
-              repeat: Infinity,
-              ease: "linear",
             }}
           />
         ))}
