@@ -54,6 +54,23 @@ const DropdownMenu = ({ title, items }: DropdownProps) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const offset = 80 // Height of navbar
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = element.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+      setIsOpen(false)
+    }
+  }
+
   // Separate arrays for desktop dropdowns
   const businessLinks = [
     { name: 'IMPORT & EXPORT', path: '/import-export' },
@@ -69,8 +86,9 @@ const Navbar = () => {
   // Combined array for mobile menu
   const allLinks = [
     ...businessLinks,
-    { name: 'ABOUT US', path: '/about' },
+    { name: 'SERVICES', path: '/services' },
     ...servicesLinks,
+    { name: 'ABOUT US', path: '/about' },
     { name: 'CONTACT US', path: '/contact' },
   ]
 
@@ -81,9 +99,12 @@ const Navbar = () => {
           {/* Desktop Menu - Hidden on mobile */}
           <div className="hidden lg:flex items-center space-x-6 flex-1 justify-end pr-16">
             <DropdownMenu title="BUSINESS" items={businessLinks} />
-            <Link to="/about" className="text-nav-gold hover:text-white font-cinzel">
+            <button 
+              onClick={() => scrollToSection('about-us')}
+              className="text-nav-gold hover:text-white font-cinzel"
+            >
               ABOUT US
-            </Link>
+            </button>
           </div>
 
           {/* Logo section */}
@@ -114,9 +135,12 @@ const Navbar = () => {
           {/* Desktop Right Menu - Hidden on mobile */}
           <div className="hidden lg:flex items-center space-x-6 flex-1 justify-start pl-16">
             <DropdownMenu title="SERVICES" items={servicesLinks} />
-            <Link to="/contact" className="text-nav-gold hover:text-white font-cinzel">
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="text-nav-gold hover:text-white font-cinzel"
+            >
               CONTACT US
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -160,17 +184,49 @@ const Navbar = () => {
 
           {/* Mobile Links - Simplified animation */}
           <div className="space-y-6">
-            {allLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="block text-nav-gold hover:text-white font-cinzel text-base 
-                         transition-colors duration-200"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {allLinks.map((link) => {
+              if (link.name === 'ABOUT US') {
+                return (
+                  <button
+                    key="about"
+                    onClick={() => {
+                      scrollToSection('about-us')
+                      setIsOpen(false)
+                    }}
+                    className="block text-nav-gold hover:text-white font-cinzel text-base 
+                             transition-colors duration-200"
+                  >
+                    {link.name}
+                  </button>
+                )
+              }
+              if (link.name === 'CONTACT US') {
+                return (
+                  <button
+                    key="contact"
+                    onClick={() => {
+                      scrollToSection('contact')
+                      setIsOpen(false)
+                    }}
+                    className="block text-nav-gold hover:text-white font-cinzel text-base 
+                             transition-colors duration-200"
+                  >
+                    {link.name}
+                  </button>
+                )
+              }
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="block text-nav-gold hover:text-white font-cinzel text-base 
+                           transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              )
+            })}
           </div>
         </div>
       </div>
