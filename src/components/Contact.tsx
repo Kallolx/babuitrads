@@ -9,7 +9,6 @@ import {
 } from 'react-icons/hi'
 import { 
   FaFacebook, 
-  FaWhatsapp,
   FaInstagram
 } from 'react-icons/fa'
 
