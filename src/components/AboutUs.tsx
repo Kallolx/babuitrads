@@ -3,10 +3,10 @@ import { HiOutlineLightBulb, HiOutlineGlobe, HiOutlineScale, HiOutlineChartBar }
 
 const AboutUs = () => {
   const companyStats = [
-    { number: "15+", label: "Years Experience", icon: HiOutlineLightBulb },
-    { number: "100+", label: "Global Partners", icon: HiOutlineGlobe },
-    { number: "500+", label: "Projects Completed", icon: HiOutlineScale },
-    { number: "95%", label: "Client Satisfaction", icon: HiOutlineChartBar },
+    { number: "15+", label: "Years of Trust", icon: HiOutlineLightBulb },
+    { number: "100+", label: "Happy Partners", icon: HiOutlineGlobe },
+    { number: "500+", label: "Projects Done", icon: HiOutlineScale },
+    { number: "95%", label: "Happy Clients", icon: HiOutlineChartBar },
   ]
 
   const fadeInUpVariant = {
@@ -36,12 +36,11 @@ const AboutUs = () => {
           variants={fadeInUpVariant}
         >
           <h2 className="text-3xl md:text-4xl font-dm-sans font-bold text-white mb-4">
-            Our <span className="text-nav-gold">Legacy</span> of Excellence
+            Who We <span className="text-nav-gold">Are</span>
           </h2>
           <div className="w-20 h-1 bg-nav-gold mx-auto mb-6" />
           <p className="text-lg text-gray-300 max-w-3xl mx-auto font-dm-sans">
-            Since our inception, MS BABUI TRADERS has been at the forefront of innovation 
-            and excellence in global trade, healthcare, and sustainable development.
+            Since we started, MS BABUI TRADERS has been helping businesses grow. We work in many areas like trade, healthcare, and farming.
           </p>
         </motion.div>
 
@@ -82,20 +81,18 @@ const AboutUs = () => {
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold text-white font-dm-sans">
-              Building Tomorrow's Success Today
+              Making Business Simple
             </h3>
             <p className="text-gray-300 font-dm-sans">
-              At MS BABUI TRADERS, we believe in creating lasting value through innovative 
-              solutions and sustainable practices. Our diverse portfolio spans across multiple 
-              sectors, enabling us to provide comprehensive solutions to our partners.
+              We help businesses succeed by making things easier. Our team works hard to bring the best solutions to our partners. Whether it's trading goods, providing medical supplies, or helping farmers, we do it all with care.
             </p>
             <div className="space-y-4">
               {[
-                "Global Trade Excellence",
-                "Healthcare Innovation",
-                "Sustainable Agriculture",
-                "Quality Assurance",
-                "Environmental Responsibility"
+                "Best Quality Products & Services",
+                "Quick & Reliable Solutions",
+                "Friendly Support Team",
+                "Fair Prices",
+                "Always Here to Help"
               ].map((item, index) => (
                 <motion.div 
                   key={item}

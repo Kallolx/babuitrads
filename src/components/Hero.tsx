@@ -31,40 +31,69 @@ const Hero = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8">
         {/* Main Hero Content */}
-        <div className="text-center mb-16">
-          {/* Logo Section */}
+        <div className="text-center space-y-12">
+          {/* Logo Section with animations */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1,
+              rotateY: [0, 360],
+            }}
+            transition={{ 
+              duration: 1.5,
+              rotateY: {
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear"
+              }
+            }}
+            className="relative"
           >
+            {/* Circular Glow Effect */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                          w-32 h-32 md:w-40 md:h-40 rounded-full bg-nav-gold/10 blur-xl z-0" />
+            
+            {/* Logo Image */}
             <img 
               src="/images/2.png" 
               alt="MS BABUI TRADERS Logo" 
-              className="h-24 md:h-32 mx-auto"
+              className="h-32 md:h-36 lg:h-40 mx-auto relative z-10"
             />
+
+            {/* Rotating Border */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                          w-32 h-32 md:w-40 md:h-40 border-2 border-nav-gold/20 rounded-full
+                          animate-[spin_10s_linear_infinite] z-0" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                          w-32 h-32 md:w-40 md:h-40 border-2 border-nav-gold/10 rounded-full
+                          animate-[spin_15s_linear_infinite_reverse] z-0" />
           </motion.div>
 
-          <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-dm-sans text-white font-bold tracking-tight mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="bg-gradient-to-r from-nav-gold via-white to-nav-gold bg-clip-text text-transparent font-dm-sans">
-              Your Complete Business Solution Partner
-            </span>
-          </motion.h1>
+          {/* Title and Tagline Container */}
+          <div className="relative z-20">
+            {/* Title Section */}
+            <motion.h1 
+              className="text-5xl md:text-4xl lg:text-6xl font-dm-sans font-bold tracking-tight mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="bg-gradient-to-r from-[#C4A962] via-white/90 to-[#C4A962] bg-clip-text text-transparent">
+                Your Complete Business Solution Partner
+              </span>
+            </motion.h1>
 
-          <motion.p 
-            className="text-lg md:text-xl text-nav-gold/90 font-dm-sans"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            "We will continue growing, innovating, and building a better tomorrow."
-          </motion.p>
+            {/* Tagline */}
+            <motion.p 
+              className="text-base md:text-lg text-[#C4A962] font-dm-sans"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              "We will continue growing, innovating, and building a better tomorrow."
+            </motion.p>
+          </div>
         </div>
 
         {/* Business Categories Grid */}

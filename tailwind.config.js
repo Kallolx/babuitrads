@@ -46,6 +46,10 @@ export default {
         'feature-pulse': {
           '0%, 100%': { boxShadow: '0 0 20px -5px rgba(196, 169, 98, 0.1)' },
           '50%': { boxShadow: '0 0 25px 0px rgba(196, 169, 98, 0.2)' },
+        },
+        spin: {
+          '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+          '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' }
         }
       },
       backgroundImage: {
