@@ -30,12 +30,12 @@ const Contact = () => {
     {
       icon: HiOutlinePhone,
       title: "Phone",
-      details: ["+8801611-100189", "+8801711-100109"]
+      details: ["+8801611-100189"]
     },
     {
       icon: HiOutlineMail,
       title: "Email",
-      details: ["msbabuitradersbd@gmail.com", "redwyan2@gmail.com"]
+      details: ["msbabuitradersbd@gmail.com"]
     }
   ]
 
@@ -55,11 +55,6 @@ const Contact = () => {
       icon: FaFacebook,
       url: "https://facebook.com/msbabuiltraders",
       label: "Facebook"
-    },
-    {
-      icon: FaWhatsapp,
-      url: "https://wa.me/8801711100109",
-      label: "WhatsApp"
     },
     {
       icon: FaInstagram,
